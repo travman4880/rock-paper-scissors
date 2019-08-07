@@ -1,4 +1,4 @@
 # rock-paper-scissors
 rock-paper-scissors project
 
-call playRound(); in web console
+runs by button click now and writes results to innerHTML
