@@ -2,13 +2,64 @@
 
 <html>
   <head>
+    <meta charset="UTF-8">
     <title>rock-paper-scissors</title>
 
     <script>
-    
-    </script>
+        let result;      
+        
+        let computerChoices = ["rock", "paper", "scissors"]; 
+        let computerSelection;
+
+        function computerPlay() {
+          return computerSelection = computerChoices[Math.floor(Math.random()*computerChoices.length)]; 
+        }
+                               
+        function playRound () {
+          let playerSelection = prompt("Pick rock, paper, or scissors.");
+          computerPlay();  
+                
+         if (playerSelection === computerSelection) {
+            result = ("It\'s a tie!");            
+           
+         } else if ((playerSelection === "rock") && (computerSelection === "scissors")) {
+           result =  ("YOU ROCK! Rock beats scissors!");           
+            
+         }  else if ((playerSelection === "rock") && (computerSelection === "paper")) {
+           result = ("Sorry! Paper covers rock, you lose");         
+            
+         } else if ((playerSelection === "paper") && (computerSelection === "rock")) {
+          result =  ("Wrap it up! Paper covers rock! YOU WIN!");          
+            
+         } else if ((playerSelection === "paper") && (computerSelection === "scissors")) {
+           result = ("Sorry you didn\'t make cut. Scissors are the natural enemy of paper.");          
+            
+         } else if ((playerSelection === "scissors") && (computerSelection === "paper")) {
+           result = ("Chopping up the competition! The scissors cut the paper!");           
+            
+         } else if ((playerSelection === "scissors") && (computerSelection === "rock")) {
+            result = ("Tough break. Rocks smash scissors. You lose.");            
+            
+         } else {
+           result = ("Something went wrong.");           
+         } 
+         document.write('<p> ' + result + ' </p>');
+        };
+
+        playRound();
+
+      </script>
 
   </head>
+  <body>
+  
+    <script>
+     
+    </script>
+  
 
+  </body>
+ 
 
+  
 </html>
