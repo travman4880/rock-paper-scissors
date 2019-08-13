@@ -7,16 +7,24 @@
 
     <script>
         let result;      
-        
+        let roundCount
+        let playerScore = 0;
+        let computerScore = 0;
         let computerChoices = ["rock", "paper", "scissors"]; 
         let computerSelection;
+        let gameResults;
 
         function computerPlay() {
           return computerSelection = computerChoices[Math.floor(Math.random()*computerChoices.length)]; 
         }
-                               
+
+       function game(){
+                
+        
+                        
         function playRound () {
           let playerSelection = prompt("Pick rock, paper, or scissors.");
+          playerSelection = playerSelection.toLowerCase();
           document.getElementById("playerSelection").innerHTML = 'You chose ' + playerSelection + ' ';
           computerPlay();
           document.getElementById("computerSelection").innerHTML = 'Computer chose ' + computerSelection + ' ';
@@ -25,22 +33,34 @@
             result = ("It\'s a tie!");            
            
          } else if ((playerSelection === "rock") && (computerSelection === "scissors")) {
+           playerScore++;
+           document.getElementById("playerScore").innerHTML = '<strong>PLAYER SCORE = ' + playerScore + ' </strong>';
            result =  ("YOU ROCK! Rock beats scissors!");           
             
          }  else if ((playerSelection === "rock") && (computerSelection === "paper")) {
+           computerScore++;
+           document.getElementById("computerScore").innerHTML = '<strong>COMPUTER SCORE = ' + computerScore + ' </strong>';
            result = ("Sorry! Paper covers rock, you lose");         
             
          } else if ((playerSelection === "paper") && (computerSelection === "rock")) {
+          playerScore++;
+          document.getElementById("playerScore").innerHTML = '<strong>PLAYER SCORE = ' + playerScore + ' </strong>';
           result =  ("Wrap it up! Paper covers rock! YOU WIN!");          
             
          } else if ((playerSelection === "paper") && (computerSelection === "scissors")) {
-           result = ("Sorry you didn\'t make cut. Scissors are the natural enemy of paper.");          
+          computerScore++;
+          document.getElementById("computerScore").innerHTML = '<strong>COMPUTER SCORE = ' + computerScore + ' </strong>';
+          result = ("Sorry you didn\'t make cut. Scissors are the natural enemy of paper.");          
             
          } else if ((playerSelection === "scissors") && (computerSelection === "paper")) {
-           result = ("Chopping up the competition! The scissors cut the paper!");           
+          playerScore++;
+          document.getElementById("playerScore").innerHTML = '<strong>PLAYER SCORE = ' + playerScore + ' </strong>';
+          result = ("Chopping up the competition! The scissors cut the paper!");           
             
          } else if ((playerSelection === "scissors") && (computerSelection === "rock")) {
-            result = ("Tough break. Rocks smash scissors. You lose.");            
+          computerScore++;
+          document.getElementById("computerScore").innerHTML = '<strong>COMPUTER SCORE = ' + computerScore + ' </strong>';
+          result = ("Tough break. Rocks smash scissors. You lose.");            
             
          } else {
            result = ("Something went wrong.");           
@@ -48,6 +68,27 @@
          document.getElementById("result").innerHTML = result;
         };
 
+        for (roundCount = 0; roundCount < 5; roundCount++){
+            playRound();
+          }
+
+          if (playerScore == computerScore) {
+            gameResults = ("It\'s a tie. Play another round?");
+          } else if (playerScore > computerScore) {
+            gameResults = ("You have conquered the machine!");
+          } else if (playerScore < computerScore) {
+            gameResults = ("Machine wins. It may be the apocalypse.");
+          } else {
+            gameResults = ("Something went wrong")
+          }
+
+          document.getElementById("gameResults").innerHTML = '<strong> ' + gameResults + ' </strong>';
+
+
+        
+      };   
+
+    
         
       </script>
 
@@ -55,7 +96,7 @@
   <body>
   
     <p>
-     <input id = "playRound" type = "button" value = "Play" onclick = "playRound();" />
+     <input id = "game" type = "button" value = "Play" onclick = "game();" />
     </p>
 
     <p id = "playerSelection"></p>
@@ -63,6 +104,12 @@
     <p id = "computerSelection"></p>
 
     <p id = "result"></p>
+
+    <p id = "playerScore"><strong>PLAYER SCORE = 0</strong></p>
+
+    <p id = "computerScore"><strong>COMPUTER SCORE = 0</strong></p>
+
+    <p id = "gameResults"></p>
 
     
   </body>
